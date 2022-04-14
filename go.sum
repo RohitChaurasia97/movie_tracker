@@ -719,6 +719,8 @@ github.com/retail-ai-inc/bean v1.1.5 h1:qDucmnKjcdCasJPyA72a3Wplp6QXDe7RL91cRxnc
 github.com/retail-ai-inc/bean v1.1.5/go.mod h1:WA/sV8BmU0/npA1NrjdaXBNhcp9nXpfBbEryVoXLWb4=
 github.com/retail-ai-inc/bean v1.1.6 h1:MctuNoEAEY9H73iyrDWQRP+JhqxxHIlSaHnKKaCPQiw=
 github.com/retail-ai-inc/bean v1.1.6/go.mod h1:WA/sV8BmU0/npA1NrjdaXBNhcp9nXpfBbEryVoXLWb4=
+github.com/retail-ai-inc/bean v1.1.8 h1:USRUmzPqmlqx6dS8fu6/+hH/NPJFh+lA5OPsG3KK+C4=
+github.com/retail-ai-inc/bean v1.1.8/go.mod h1:LzJYCULkl/5pV2h4G5GbwBKtCi4zE6/LZmog8tGCyro=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=

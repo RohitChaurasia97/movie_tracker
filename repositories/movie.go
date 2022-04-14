@@ -25,6 +25,7 @@ import (
 	"context"
 	"errors"
 	models "movie_tracker/models"
+	"time"
 
 	// "github.com/retail-ai-inc/bean/helpers"
 	// "github.com/getsentry/sentry-go"
@@ -102,19 +103,24 @@ func (db *DbInfra) DeleteMoviesRepo(c context.Context, idToDelete string) ([]mod
 	return movies, nil
 }
 
-func (db *DbInfra) UpdateMoviesRepo(c context.Context, idToUpdate string, toDoUpdate models.Movie) ([]models.Movie, error) {
-	db.Conn.MasterMySQLDB.Find(&toDoUpdate, "ID=?", idToUpdate)
+func (db *DbInfra) UpdateMoviesRepo(c context.Context, idToUpdate string, movie models.Movie) ([]models.Movie, error) {
+	var movieToFind models.Movie
 
-	if toDoUpdate.ID == 0 {
+	db.Conn.MasterMySQLDB.Find(&movieToFind, "ID=?", idToUpdate)
+
+	if movieToFind.ID == 0 {
 		return []models.Movie{}, errors.New("id not found to update")
+	} else {
+		movie.ID = movieToFind.ID
+		movie.Completed = movieToFind.Completed
+		movie.CreatedAt = movieToFind.CreatedAt
+		movie.UpdatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+		err := db.Conn.MasterMySQLDB.Save(&movie).Error
+		var movies []models.Movie
+		db.Conn.MasterMySQLDB.Find(&movies)
+		if err != nil {
+			return movies, err
+		}
+		return movies, nil
 	}
-
-	err := db.Conn.MasterMySQLDB.Save(&toDoUpdate).Error
-	var movies []models.Movie
-	db.Conn.MasterMySQLDB.Find(&movies)
-	if err != nil {
-		return movies, err
-	}
-	return movies, nil
-
 }

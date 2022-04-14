@@ -17,3 +17,5 @@
 golangci-lint
 
 movie_tracker
+
+/logs

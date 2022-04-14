@@ -7,7 +7,7 @@ require (
 	github.com/go-playground/validator/v10 v10.10.1
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/labstack/echo/v4 v4.7.2
-	github.com/retail-ai-inc/bean v1.1.6
+	github.com/retail-ai-inc/bean v1.1.8
 	github.com/spf13/cobra v1.4.0
 	github.com/spf13/viper v1.11.0
 )
