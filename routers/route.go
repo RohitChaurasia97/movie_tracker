@@ -39,6 +39,7 @@ type Repositories struct {
 
 type Services struct {
 	exampleSvc services.ExampleService
+	movieSvc   services.MovieService // added by bean
 }
 
 type Handlers struct {
@@ -56,6 +57,7 @@ func Init(b *bean.Bean) {
 
 	svcs := &Services{
 		exampleSvc: services.NewExampleService(repos.exampleRepo),
+		movieSvc:   services.NewMovieService(repos.movieRepo), // added by bean
 	}
 
 	hdlrs := &Handlers{
