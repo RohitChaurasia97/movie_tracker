@@ -44,6 +44,7 @@ type Services struct {
 
 type Handlers struct {
 	exampleHdlr handlers.ExampleHandler
+	movieHdlr   handlers.MovieHandler // added by bean
 }
 
 func Init(b *bean.Bean) {
@@ -62,6 +63,7 @@ func Init(b *bean.Bean) {
 
 	hdlrs := &Handlers{
 		exampleHdlr: handlers.NewExampleHandler(svcs.exampleSvc),
+		movieHdlr:   handlers.NewMovieHandler(svcs.movieSvc), // added by bean
 	}
 
 	// Default index page goes to above JSON (/json) index page.
