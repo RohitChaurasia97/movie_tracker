@@ -81,4 +81,25 @@ func Init(b *bean.Bean) {
 
 	// Example of using validator.
 	e.POST("/example", hdlrs.exampleHdlr.Validate)
+
+	// movie routes
+	movieRepos := &Repositories{
+		movieRepo: repositories.NewMovieRepository(b.DBConn),
+	}
+
+	movieSvcs := &Services{
+		movieSvc: services.NewMovieService(movieRepos.movieRepo),
+	}
+
+	movieHdlrs := &Handlers{
+		movieHdlr: handlers.NewMovieHandler(movieSvcs.movieSvc),
+	}
+
+	moviesGroup := e.Group("/movies")
+	moviesGroup.GET("", movieHdlrs.movieHdlr.GetAllMovies)
+	moviesGroup.POST("/add", movieHdlrs.movieHdlr.AddMovie)
+	moviesGroup.DELETE("/delete/:idToDelete", movieHdlrs.movieHdlr.DeleteMovie)
+	moviesGroup.POST("/complete/:idToComplete", movieHdlrs.movieHdlr.CompleteMovie)
+	moviesGroup.POST("/update/:idToUpdate", movieHdlrs.movieHdlr.UpdateMovie)
+
 }
