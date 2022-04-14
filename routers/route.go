@@ -34,6 +34,7 @@ import (
 
 type Repositories struct {
 	exampleRepo repositories.ExampleRepository
+	movieRepo   repositories.MovieRepository // added by bean
 }
 
 type Services struct {
@@ -50,6 +51,7 @@ func Init(b *bean.Bean) {
 
 	repos := &Repositories{
 		exampleRepo: repositories.NewExampleRepository(b.DBConn),
+		movieRepo:   repositories.NewMovieRepository(b.DBConn), // added by bean
 	}
 
 	svcs := &Services{
