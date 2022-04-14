@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+
+  movie-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # - .:/var/www/movie
+      - ~/go/pkg:/go/pkg
+    init: true
+    tty: true
+    hostname: movie
+    container_name: movie
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    security_opt:
+        - "seccomp:unconfined"
+    ports:
+        - "9000:9000"
+  
+  mysqldb:
+    image: mysql:8.0
+    user: root:root
+    container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: local
+      MYSQL_PASSWORD: root
+      MYSQL_TCP_PORT: 65333
+    volumes:
+      - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - 65333:65333
+    expose:
+      - 65333
+    restart: unless-stopped
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u root --password=root
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 20s
