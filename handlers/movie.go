@@ -59,8 +59,12 @@ func (handler *movieHandler) GetAllMovies(c echo.Context) error {
 		})
 	}
 
-	return c.Render(http.StatusOK, "templates/movie", map[string]interface{}{
-		"movies": output,
+	// return c.Render(http.StatusOK, "templates/movie", map[string]interface{}{
+	// 	"movies": output,
+	// })
+	return c.Render(http.StatusOK, "base", echo.Map{
+		"movies":   output,
+		"template": "templates/movie",
 	})
 }
 
@@ -80,8 +84,12 @@ func (handler *movieHandler) AddMovie(c echo.Context) error {
 			"error": err.Error(),
 		})
 	}
-	return c.Render(http.StatusOK, "templates/movie", map[string]interface{}{
-		"movies": output,
+	// return c.Render(http.StatusOK, "templates/movie", map[string]interface{}{
+	// 	"movies": output,
+	// })
+	return c.Render(http.StatusOK, "base", echo.Map{
+		"movies":   output,
+		"template": "templates/movie",
 	})
 }
 
@@ -95,8 +103,12 @@ func (handler *movieHandler) CompleteMovie(c echo.Context) error {
 			"error": err.Error(),
 		})
 	}
-	return c.Render(http.StatusOK, "templates/movie", map[string]interface{}{
-		"movies": output,
+	// return c.Render(http.StatusOK, "templates/movie", map[string]interface{}{
+	// 	"movies": output,
+	// })
+	return c.Render(http.StatusOK, "base", echo.Map{
+		"movies":   output,
+		"template": "templates/movie",
 	})
 }
 
@@ -113,8 +125,12 @@ func (handler *movieHandler) DeleteMovie(c echo.Context) error {
 		})
 	}
 
-	return c.Render(http.StatusOK, "templates/movie", map[string]interface{}{
-		"movies": output,
+	// return c.Render(http.StatusOK, "templates/movie", map[string]interface{}{
+	// 	"movies": output,
+	// })
+	return c.Render(http.StatusOK, "base", echo.Map{
+		"movies":   output,
+		"template": "templates/movie",
 	})
 }
 
@@ -147,7 +163,11 @@ func (handler *movieHandler) UpdateMovie(c echo.Context) error {
 		})
 	}
 
-	return c.Render(http.StatusOK, "templates/movie", map[string]interface{}{
-		"movies": output,
+	// return c.Render(http.StatusOK, "templates/movie", map[string]interface{}{
+	// 	"movies": output,
+	// })
+	return c.Render(http.StatusOK, "base", echo.Map{
+		"movies":   output,
+		"template": "templates/movie",
 	})
 }
