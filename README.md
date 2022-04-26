@@ -12,7 +12,7 @@ Simple Crud app built using bean.
 
     docker-compose up --build
 
-  #### - Wait for mysqldb container and movie container to be running and healthy. You can check the status of containers with the help of docker-compose ps. Access localhost on port 9000 
+  #### - Wait for mysqldb container and movie container to be running and healthy. You can check the status of containers with the help of docker-compose ps. Access localhost on port 9000 at route /movies for the movie_app
 
     http://localhost:9000/movies
  
@@ -23,4 +23,4 @@ Simple Crud app built using bean.
       
   ####    - Wait for mysqldb container and movie container to be running and healthy. You can check the status of containers with the help of docker-compose ps (in gitpod's terninal)
       
-  ####   - Access the workspace on port 9000 (using remote explorer extension in gitpod's VS Code IDE)
+  ####   - Access the workspace on port 9000 at route /movies for the movie_app (using remote explorer extension in gitpod's VS Code IDE)
