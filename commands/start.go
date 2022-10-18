@@ -28,20 +28,17 @@ import (
 	"movie_tracker/routers"
 	"movie_tracker/validations"
 
-	"github.com/getsentry/sentry-go"
 	"github.com/retail-ai-inc/bean"
 	berror "github.com/retail-ai-inc/bean/error"
-	"github.com/retail-ai-inc/bean/helpers"
-	"github.com/retail-ai-inc/bean/options"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 var (
 	// Used for flags.
-	host string
-	port string
-	startWeb bool
+	host       string
+	port       string
+	startWeb   bool
 	startQueue bool
 
 	// startCmd represents the start command.
@@ -68,28 +65,6 @@ func start(cmd *cobra.Command, args []string) {
 	var config bean.Config
 	if err := viper.Unmarshal(&config); err != nil {
 		fmt.Println(err)
-	}
-
-	// Flush buffered sentry events before the program terminates.
-	defer sentry.Flush(config.Sentry.Timeout)
-
-	// Prepare sentry options before initialize bean.
-	if config.Sentry.On {
-		options.SentryOn = true
-		config.Sentry.ClientOptions = &sentry.ClientOptions{
-			Debug:            config.Sentry.Debug,
-			Dsn:              config.Sentry.Dsn,
-			Environment:      config.Environment,
-			BeforeSend:       options.DefaultBeforeSend, // Custom beforeSend function
-			AttachStacktrace: true,
-			TracesSampleRate: helpers.FloatInRange(config.Sentry.TracesSampleRate, 0.0, 1.0),
-		}
-
-		// Example of setting a global scope, if you want to set the scope per event,
-		// please check `sentry.WithScope()`.
-		// config.Sentry.ConfigureScope = func(scope *sentry.Scope) {
-		// scope.SetTag("my-tag", "my value")
-		// }
 	}
 
 	// Create a bean object

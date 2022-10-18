@@ -7,11 +7,7 @@ RUN apk update && apk upgrade && apk add --no-cache bash git openssh make autoco
 # Set the Current Working Directory inside the container
 WORKDIR /var/www/movie_tracker
 
-COPY go.mod go.sum ./
-
-RUN go mod download -x
-
-COPY . /var/www/movie_tracker/
+COPY . .
 
 RUN go build -v
 
