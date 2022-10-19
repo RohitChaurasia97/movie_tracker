@@ -7,7 +7,7 @@ ports:
     onOpen: open-browser
 
 tasks:
-  - init: "docker-compose up --build"
+  - name: movie-tracker with gitpod
     command: docker-compose up --build
 
 github:
