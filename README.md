@@ -49,6 +49,10 @@ For a real live application containing multiple services, functionalities and da
    docker compose exec mysqldb mysql -u root local
    ```
  
+
+https://user-images.githubusercontent.com/97086931/196847900-4abd0f3f-643f-45fa-955c-f19c87ca8791.mp4
+
+
 ### Setup in Gitpod:- 
 
 ####   - You can add gitpod extension to your browser or directly create a workspace in gitpod by accessing
@@ -59,3 +63,8 @@ For a real live application containing multiple services, functionalities and da
 ####    - Wait for mysqldb container and movie container to be running and healthy. You can check the status of containers with the help of docker-compose ps (in gitpod's terninal)
 
 ####   - Access the workspace on port 9000 at route /movies for the movie_app (using remote explorer extension in gitpod's VS Code IDE)
+
+
+
+https://user-images.githubusercontent.com/97086931/196848344-cc7985b7-8cc6-49f9-9f18-523bdaaa619d.mp4
+
