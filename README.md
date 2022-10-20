@@ -4,7 +4,8 @@ Simple Crud app built using bean framework.
 As explained in bean's readme bean is designed based on the service repository design pattern.
 
 ```
-Router Interface delegates the requests to the handler layer, where the handler layer links with one/multiple service(s) and each of these service layers is where the business logic is implemented.
+Router Interface delegates the requests to the handler layer, where the handler layer links with one/multiple service(s) 
+and each of these service layers is where the business logic is implemented.
 The service layer then links with the repository layer which can be anything a SQL database or NoSQL db.
 ```
 
@@ -30,12 +31,12 @@ For a real live application containing multiple services, functionalities and da
 
 #### - After changing directory use docker-compose to setup the project in local
   ```
-  docker-compose up --build
+  docker compose up --build
   ```
 
 #### - Check status of services in docker compose 
   ```
-  docker-compose ps
+  docker compose ps
   ```
 
 #### - Wait for mysqldb container and movie container to be running and healthy. Access localhost on port 9000 at route /movies for the movie_app
