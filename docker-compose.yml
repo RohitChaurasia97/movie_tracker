@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 
 services:
 
@@ -6,13 +6,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      # - .:/var/www/movie_tracker
-      - ~/go/pkg:/go/pkg
     init: true
     tty: true
     hostname: movie
     container_name: movie
+    # start the movie container once get the healthy signal from mysqldb container.
     depends_on:
       mysqldb:
         condition: service_healthy
@@ -34,12 +32,12 @@ services:
       - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
       - 65333:65333
-    expose:
-      - 65333
     restart: unless-stopped
+    # u can tweak the healthcheck parameters for faster loading of mysql and hence the app.
+    # https://docs.docker.com/engine/reference/builder/#healthcheck
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u root --password=root
-      interval: 1m
+      interval: 10s
       timeout: 10s
-      retries: 3
+      retries: 20
       start_period: 20s
