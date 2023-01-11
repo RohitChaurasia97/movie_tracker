@@ -22,8 +22,6 @@
 package commands
 
 import (
-	"fmt"
-
 	"movie_tracker/middlewares"
 	"movie_tracker/routers"
 	"movie_tracker/validations"
@@ -31,7 +29,6 @@ import (
 	"github.com/retail-ai-inc/bean"
 	berror "github.com/retail-ai-inc/bean/error"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 var (
@@ -52,8 +49,8 @@ var (
 
 func init() {
 	rootCmd.AddCommand(startCmd)
-	defaultHost := viper.GetString("http.host")
-	defaultPort := viper.GetString("http.port")
+	defaultHost := bean.BeanConfig.HTTP.Host
+	defaultPort := bean.BeanConfig.HTTP.Port
 	startCmd.Flags().StringVar(&host, "host", defaultHost, "host address")
 	startCmd.Flags().StringVar(&port, "port", defaultPort, "port number")
 	startCmd.Flags().BoolVarP(&startWeb, "web", "w", false, "start with web service")
@@ -61,15 +58,7 @@ func init() {
 }
 
 func start(cmd *cobra.Command, args []string) {
-	// Unmarshal the env.json into config object.
-	var config bean.Config
-	if err := viper.Unmarshal(&config); err != nil {
-		fmt.Println(err)
-	}
-
-	// Create a bean object
-	b := bean.New(config)
-
+	b := bean.New()
 	// Add custom validation to the default validator.
 	b.UseValidation(
 		// Example:

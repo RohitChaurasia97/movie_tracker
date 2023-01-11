@@ -25,6 +25,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/retail-ai-inc/bean"
 	"github.com/retail-ai-inc/bean/helpers"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -61,6 +62,11 @@ func init() {
 	viper.SetConfigName("env")
 
 	if err := viper.ReadInConfig(); err != nil {
+		log.Fatalln(err)
+	}
+
+	// IMPORTANT: Unmarshal the env.json into global BeanConfig object.
+	if err := viper.Unmarshal(&bean.BeanConfig); err != nil {
 		log.Fatalln(err)
 	}
 }
